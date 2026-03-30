@@ -39,9 +39,14 @@ class ToDo:
         self.task_lst.pop(index - 1)
         self.save_task()
     
-    def search_task(self, task):
-        if task in self.task_lst: 
-            return f"Found: {task}"
+    def search_task(self, keyword):
+        results = []
+        for task in self.task_lst:
+            if keyword in task:
+                results.append(task)
+                
+        if results:
+            return "/n".join(results)
         else:
             return "Sorry task not exist!"
     
