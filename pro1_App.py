@@ -20,12 +20,14 @@ if choice == "Add":
 
 elif choice == "View":
     if st.button("View task"):
-        view_task = todo.view_task()
-        st.write(f"Your task: {view_task}")
-
+        st.text(todo.view_task())
+        
 elif choice == "Update":
     st.write("Current Tasks:")
-    st.text(todo.view_task())
+    if not todo.task_lst:
+        st.warning("No task available")
+    else:
+        st.text(todo.view_task())
     index = st.number_input("select task number for updating: ",min_value = 1, step=1)
     new_task = st.text_input("enter new task: ").lower()
     if st.button("Update task"):
@@ -37,7 +39,10 @@ elif choice == "Update":
 
 elif choice == "Delete":
     st.write("Current Tasks:")
-    st.text(todo.view_task())
+    if not todo.task_lst:
+        st.warning("No task available")
+    else:
+        st.text(todo.view_task())
     index = st.number_input("Select task number: ", min_value=1, step=1)
     if st.button("Delete Task"):
         try:
@@ -49,11 +54,14 @@ elif choice == "Delete":
 elif choice == "Search":
     keyword = st.text_input("Enter Task name for searching: ").lower()
     if st.button("Search Task"):
-        result = todo.search_task(task)
-        st.write(result)
+        if keyword:
+            result = todo.search_task(keyword)
+            st.write(result)
+        else:
+            st.warning("Please enter a keyword")
 
 elif choice == "Clear":
     if st.button("Clear task"):
         todo.clear_all()
-        st.success("Task remove successfully")
+        st.success("All tasks removed successfully")
 
