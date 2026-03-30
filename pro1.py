@@ -46,7 +46,7 @@ class ToDo:
                 results.append(task)
                 
         if results:
-            return "/n".join(results)
+            return "\n".join(results)
         else:
             return "Sorry task not exist!"
     
