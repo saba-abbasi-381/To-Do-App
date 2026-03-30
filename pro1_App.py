@@ -47,7 +47,7 @@ elif choice == "Delete":
             st.warning("Invalid task number")
 
 elif choice == "Search":
-    task = st.text_input("Enter Task name for searching: ").lower()
+    keyword = st.text_input("Enter Task name for searching: ").lower()
     if st.button("Search Task"):
         result = todo.search_task(task)
         st.write(result)
